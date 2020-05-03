@@ -1,0 +1,55 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//383. Ransom Note
+//Given an arbitrary ransom note string and another string containing letters from all the magazines, 
+//write a function that will return true if the ransom note can be constructed from the magazines ; otherwise, it will return false.
+//
+//Each letter in the magazine string can only be used once in your ransom note.
+//
+//Note:
+//You may assume that both strings contain only lowercase letters.
+//
+//canConstruct("a", "b") -> false
+//canConstruct("aa", "ab") -> false
+//canConstruct("aa", "aab") -> true
+// 
+// Solved: 3/5/2020
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        
+        if( ransomNote.empty() )
+        {
+            return true;
+        }
+        else
+        {
+            if( magazine.empty() )
+                return false;
+        }
+            
+        bool retVal = true;;
+        string str = magazine;
+        int i =0;
+        while( ransomNote[i] != '\0' )
+        {
+            std::size_t indexFound =  str.find_first_of(ransomNote[i]); 
+            if( indexFound == string::npos)
+            {
+                retVal = false;
+                break;
+            }
+            else
+            {
+                str.erase(indexFound,1);   
+            }
+            i++;
+        }
+        return retVal;
+        
+    }
+};
