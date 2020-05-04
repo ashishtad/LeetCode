@@ -1,0 +1,35 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 1009. Complement of Base 10 Integer
+//
+//Every non-negative integer N has a binary representation.  For example, 5 can be represented as "101" in binary, 11 as "1011" in binary, and so on.  Note that except for N = 0, there are no leading zeroes in any binary representation.
+//
+//The complement of a binary representation is the number in binary you get when changing every 1 to a 0 and 0 to a 1.  For example, the complement of "101" in binary is "010" in binary.
+//
+//For a given number N in base-10, return the complement of it's binary representation as a base-10 integer.
+// 
+// Solved : 4/5/2020
+//
+// Solution Notes: XoR a number with 1 will give its complement. i.e 101 ^ 111 = 010
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+class Solution {
+public:
+    int findComplement(int num) {
+            if( 0== num)
+            return 1;
+        else if( 1==num)
+            return 0;
+        //calculate the number of bits first in the number
+        int numOfBits = floor(log2(num))+1;
+        //create a mask of same no of bits i.e if bitcount =3  mask =111
+        long x =1;// long because for num=10^9 ,int will overflow
+        long mask = ((x<<numOfBits)-1);
+        //Do bitwise Xor
+        int result = num^mask;
+        
+        return result;
+        
+        
+    }
+};
