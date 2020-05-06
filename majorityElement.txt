@@ -1,0 +1,42 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Majority Element
+//
+//Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+
+//You may assume that the array is non-empty and the majority element always exist in the array.
+//
+// Solved: 6/5/2020
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+          if(nums.size() ==0)
+            return 0;
+        if(nums.size() ==1)
+            return nums[0];
+        int size = nums.size();
+        
+        int majority = size/2;
+        int result=0;
+        
+        map<int,int> numMap;
+        vector<int>::iterator it;
+        for(it=nums.begin(); it != nums.end(); it++)
+        {
+            
+            
+                numMap[*it] ++;
+                if( numMap[*it] > majority )
+                {
+                    result = *it;
+                    break;
+                }
+            
+        }
+        return result;
+        
+    }
+};
