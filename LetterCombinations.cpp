@@ -43,14 +43,16 @@ public:
         while( !combinationStack.empty() )
         {
             string s = combinationStack.top();
-            combinationStack.pop(); //pop the element as we are goint to create a new                                            combination and push it
+            combinationStack.pop(); //pop the element as we are goint to create a new combination and push it
             
-            //If the element/combination in queue length is same as input digit, then we got               our result.
+            //If the element/combination in queue length is same as input digit, then we got our result.
             if( n == s.length())
                 result.push_back(s);
             else
             {
-                //get the corresponding number's leeter and amke combinations with existing                 elemet in deque.
+                //get the corresponding number's leeter and amke combinations with existing  elemet in deque.
+		//at is used instead [] as its constant map. For constant map if use [] then for the key which is not present it add as an entry
+		//with deafult value which ultimately changes the map. 
                 string letter = numberIndexMap.at(string(1,digits[s.length()])) ;
                 for( string::iterator it=letter.begin(); it!=letter.end();++it)
                 {
