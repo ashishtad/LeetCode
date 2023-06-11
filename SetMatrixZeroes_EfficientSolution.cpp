@@ -15,7 +15,7 @@ public:
             if(matrix[i][j] == 0) {
                 if(i == 0) fr = true;  //if any element in first row is zero
                 if(j == 0) fc = true;  // If any element in first column is zero
-                matrix[0][j] = 0;      //setting cooresponding first cell of correspondng col
+                matrix[0][j] = 0;      //setting corresponding first cell of correspondng col
                 matrix[i][0] = 0;    //setting first cell of corresponding row
             }
         }

@@ -33,6 +33,8 @@
                 ans.pop_back();
                 --k;
             }
+			//ans.size() if fails that means nothing is there in ans. so accept only non zeros
+			//Because accepting zeroes will become leading zeros in ans
             if( ans.size() || (num[i]!='0') )
                 ans.push_back(num[i]);
             i++;

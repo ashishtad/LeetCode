@@ -54,32 +54,6 @@ public:
 		}
 	}
 
-	void dfs( int start,int n)
-	{
-		vector<bool> visited(n, false);
-        visited[start] = true;
-        
-        stack<int> stack;
-        stack.push(start);
-        
-        while(!stack.empty()){
-            int k = stack.top();
-            stack.pop();
-            
-			if( !visited[k] )
-			{
-				visited[k] = true;
-				cout<<k<<"--->";
-			}
-            
-            for(auto it = adj[k].begin(); it != adj[k].end(); it++){
-                if(!visited[*it]){
-                    stack.push(*it);
-                }
-            }
-        }
-        return false;
-	}
 	void dfs_helper(T src,map<T,bool> &visited)
 	{
 		visited[src] = true;
