@@ -1,8 +1,16 @@
 /////////////////////////////////////////////////////////
 //
-// LEVEL ORDER TRAVERSAL 
+// LEVEL ORDER TRAVERSAL
+// Time complexity: O(n)
+//The algorithm performs a level order traversal of the binary tree. This means it visits each node once, starting from the root and going level by level.
+//In the worst case, it visits all "n" nodes of the tree 
+// Space complexity: O(h) h: height of tree
+// The space complexity is O(h), where "h" is the height of the tree.
+//This is because the recursive calls create a call stack. In the worst case, when the tree is highly unbalanced (skewed), the height of the call stack can be equal to the height of the tree.
 // DATE:7/08/2020
 /////////////////////////////////////////////////////////
+
+
 
 
 /**
