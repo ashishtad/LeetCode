@@ -48,7 +48,7 @@ public:
 
 //Solution-2
 
-lass Solution {
+class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
         
@@ -77,6 +77,43 @@ public:
         Traverse(root->left,level+1,vResult);
         Traverse(root->right,level+1,vResult);
         
+        
+    }
+};
+
+
+//Solution-3 Iterative
+
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> result;
+        if( !root)
+            return result;
+        queue<TreeNode*>q;
+        q.push(root);
+        bool lefttoright = true;
+        while(!q.empty())
+        {
+            int levelsize = q.size();
+            vector<int> level;
+            for( int i =0; i<levelsize;++i) {
+                TreeNode *node = q.front();
+                q.pop();
+                if(lefttoright)
+                    level.push_back(node->val);
+                else
+                    level.insert(level.begin(),node->val);
+                
+                if( node->left)
+                    q.push(node->left);
+                if( node->right)
+                    q.push(node->right);
+            }
+            result.push_back(level);
+            lefttoright = !lefttoright;
+        }
+        return result;
         
     }
 };
