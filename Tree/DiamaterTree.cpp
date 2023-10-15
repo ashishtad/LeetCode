@@ -101,7 +101,8 @@ public:
         int right = findDiameter(root->right,diameter);
         
         int height = max(left,right)+1;
-        //At current node diameter is leftheight + right height.
+        //At current node diameter is max of leftheight + right height and diamteter of that node.
+        // Leftheight +right height : Cinsidering the diameter might pass through current root.
          diameter = max( left+right,diameter);
         return height;
     }
