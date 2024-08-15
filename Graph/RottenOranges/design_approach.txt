@@ -1,0 +1,15 @@
+
+This problem could not be solved by DFS.
+This is multi source BFS problem where we need to do BFS simultaneously from two nodes( in this problem).
+
+Solution:
+Traverse the grid and :
+1. Identify the total fresh oranges in the grid.
+2. Push the rotten oranges cordinates in queue.
+
+Traverse the queue till it's empty:
+3. Mark the adjacent oranges as rotten and increment the time.
+4. If no fresh oranges left return the time else return -1
+
+Reference:
+https://youtu.be/y704fEOx0s0
