@@ -1,0 +1,17 @@
+Solution-1. Eventful_safe_states.cpp
+
+Here the approach is to solve the problem by topological sort.
+Hence we need to reverse the graph and perform the usual topological sort.
+Space complexity: O(V+E) as new reverse graph needs to be constructed.
+
+Solution-2 Eventful_state_solution2.cpp
+
+Here the approach is perform a recursive DFS from starting node.
+Meanwhile while traversing the neighbour nodes, construct a safe map
+so that by the time we reach one terminal node, we would already have
+results for some of the other noeds in path.
+And hash map can be used to traverse the nodes while determining if node
+is already processed or not. If node is present in map it's already processed so skip it.
+
+Approach reference:
+https://www.youtube.com/watch?v=Re_v0j0CRsg
