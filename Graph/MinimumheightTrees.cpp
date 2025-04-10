@@ -3,7 +3,7 @@
 // Minimum Height Trees
 // check for below refernces for design:
 //  https://leetcode.com/problems/minimum-height-trees/discuss/76055/Share-some-thoughts
-//  https://leetcode.com/problems/minimum-height-trees/solution/
+// https://www.youtube.com/watch?v=wQGQnyv_9hI&t=946s&ab_channel=NeetCodeIO
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
