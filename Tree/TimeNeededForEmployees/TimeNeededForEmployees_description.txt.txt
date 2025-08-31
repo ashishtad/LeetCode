@@ -1,0 +1,94 @@
+
+
+LeetCode 1376: Time Needed to Inform All Employees.
+
+The story in plain words
+
+You have a company with n employees.
+
+Every employee has one direct manager (except the head).
+
+The head of the company is employee headID.
+
+Each manager needs a certain amount of informTime[i] minutes to pass the news to all their direct subordinates.
+
+Subordinates then repeat the process with their own teams.
+
+We need to figure out:
+👉 How much time will it take for the news to spread from the head to everyone in the company?
+
+Key points
+
+manager[i] = the manager of employee i.
+
+If manager[i] = -1, that’s the head.
+
+informTime[i] = time taken by manager i to inform all their direct subordinates.
+
+Important: it doesn’t depend on how many subordinates there are — once a manager starts informing, all of their subordinates are informed in parallel after informTime[i] minutes.
+
+The total time is basically the longest path from the head down to the leaf employees in this management tree.
+
+
+n = 7
+headID = 0
+manager = [-1, 0, 0, 1, 1, 2, 2]
+informTime = [2, 2, 1, 1, 1, 0, 0]
+
+
+Step 1: Build the tree from manager
+
+Head = employee 0
+
+Subordinates:
+
+0 → [1,2]
+
+1 → [3,4]
+
+2 → [5,6]
+
+So the tree looks like:
+         0 (2)
+       /      \
+     1 (2)    2 (1)
+    /   \     /   \
+  3(1) 4(1) 5(0)  6(0)
+
+Step 2: Simulate spreading
+
+At t = 0: Employee 0 (head) starts informing.
+
+At t = 2: Employees 1 and 2 are informed (since informTime[0] = 2).
+
+From Employee 1:
+
+At t = 2: Employee 1 starts.
+
+At t = 4: Employees 3 and 4 are informed (needs 2 more minutes).
+
+They each take 1 more minute, so:
+
+At t = 5: Employees 3 and 4 finish.
+
+From Employee 2:
+
+At t = 2: Employee 2 starts.
+
+At t = 3: Employees 5 and 6 are informed (needs 1 more minute).
+
+Since their informTime=0, they’re done immediately.
+
+Step 3: Total time
+
+Longest path =
+
+0 → 1 → 3 = 2 + 2 + 1 = 5
+
+0 → 1 → 4 = 5
+
+0 → 2 → 5 = 3
+
+0 → 2 → 6 = 3
+
+⏱️ Total time = 5 minutes
