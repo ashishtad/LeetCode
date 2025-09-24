@@ -1,0 +1,95 @@
+
+Approach
+========
+
+PREORDER + BST PROPERTY
+
+ Why preorder + BST property is enough
+
+For a BST:
+
+All nodes in the left subtree of a node X have values < X.val.
+
+All nodes in the right subtree have values > X.val (or >= if you allow duplicates on one side).
+
+A preorder listing is root, (preorder of left subtree), (preorder of right subtree).
+So when reading preorder left→right:
+
+The first value is the root.
+
+Subsequent values that are within (minBound, root.val) belong to the left subtree (in their preorder order).
+
+The first value that is > root.val marks the start of the right subtree (and it must also satisfy (root.val, maxBound)).
+
+If we maintain bounds (low, high) while consuming the preorder array in a single pass (an index that only moves forward), we can decide whether the current value belongs in the current subtree or not. If it fits the bounds, we create a node and recursively build its left and right subtrees with tighter bounds; if it doesn’t fit the bounds, it belongs to some ancestor’s subtree, so we return nullptr and let the caller handle it. This guarantees each preorder number is used exactly once and placed in the correct spot.
+
+
+Intuition with a concrete example
+
+Preorder: [8, 5, 1, 7, 10, 12]
+
+We start with bounds (-inf, +inf) and idx = 0.
+
+idx=0: value=8 fits (-inf, +inf) → create node(8), increment idx to 1.
+
+build left subtree of 8 with bounds (-inf, 8):
+
+idx=1: value=5 fits (-inf, 8) → create node(5), idx→2.
+
+build left of 5 with (-inf, 5):
+
+idx=2: value=1 fits (-inf, 5) → node(1), idx→3.
+
+left of 1 with (-inf,1): idx=3 value=7 does NOT fit (7>1) → return nullptr.
+
+right of 1 with (1,5): idx still 3, value=7 does NOT fit → return nullptr.
+
+node(1) complete; return to node(5).
+
+build right of 5 with (5,8):
+
+idx=3 value=7 fits (5,8) → node(7), idx→4.
+
+children: next value 10 doesn't fit in their bounds → both null.
+
+node(7) complete.
+
+node(5) complete.
+
+build right subtree of 8 with (8, +inf):
+
+idx=4: value=10 fits (8,+inf) → node(10), idx→5.
+
+left of 10 (8,10): idx=5 value=12 does NOT fit → null.
+
+right of 10 (10,+inf): idx=5 value=12 fits → node(12), idx→6.
+
+node(10) complete.
+
+All values consumed and placed correctly — we reconstructed the original BST.
+
+Complexity
+
+Time: O(N) — each preorder element is handled a constant number of times.
+
+Space: O(N) worst-case for the output vector + recursion stack (or the explicit stack) — typically O(H) additional.
+
+Edge cases & practical notes
+
+Duplicates: If duplicates exist, you must adopt a consistent tie-breaking rule (e.g., <= goes to left). The bounds checks and iterative logic must reflect that choice.
+
+Integer bounds: Use long long bounds (LLONG_MIN, LLONG_MAX) when node values could equal INT_MIN/INT_MAX to avoid mistaken comparisons.
+
+Empty input: handle empty string or empty preorder vector.
+
+Serialization format: pick a delimiter (comma) and be careful with negative numbers (they parse fine with stoi if you split correctly).
+
+BST property + preorder gives unique reconstruction
+
+Preorder is root → left → right.
+
+The very first element is always the root.
+
+Using BST property (left < root < right), we can then partition the rest of preorder into left-subtree values and right-subtree values without ambiguity.
+
+With bounds (low, high), we can rebuild the tree in one forward scan, O(N) time.
