@@ -1,0 +1,45 @@
+
+/*
+The problem statement is a little vague.
+We need to return the Maximum Element from each window.
+max sliding window = list of max element for each window
+
+Time: O(k*n)
+There are (n − k + 1) sliding windows.
+
+For each window, you call:
+
+std::max_element(start, end)
+
+
+This scans k elements → O(k).
+
+So total work =
+
+(number of windows) × (work per window)
+= (n − k + 1) × O(k)
+≈ O(nk)
+
+*/
+
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        int size = nums.size();
+        if (0 == size) return {};
+        if (1 == size) return nums;
+
+        /* Traverse the list in window of k size */
+        vector<int> res;
+        auto it = nums.begin();
+        for (int i=0; i<=size-k; ++i) {
+          
+              
+                auto maxit = std::max_element(it+i, it+i+k);
+                 res.push_back(*maxit);
+         
+            
+        }
+        return res;
+    }
+};
