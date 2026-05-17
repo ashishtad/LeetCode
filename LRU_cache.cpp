@@ -24,6 +24,11 @@ class Node {
     }
 };
 /*
+    Design
+    ======
+    A global double linked list to store all the (key,value).
+    Each node is represented in a hash map - for O(1) access.
+
   Doubly linked list to maintain the LRU cache.
   Doubly linke list is used to so as to perform deltion
   and addition of nodes efficiently when node is given as input. 
